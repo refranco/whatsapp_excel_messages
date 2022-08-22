@@ -55,14 +55,13 @@ def wp_image(phone,name, caption, img_path):
 def wp_instant(phone, name, message):
     import pywhatkit as kit
     from string import Template
-    name = name.split(' ')[0]
+    name = name.split(' ')[0].title()
     temp_message = Template(message).substitute(name=name)
     try:
         kit.sendwhatmsg_instantly(phone_no=phone,
                                   message=temp_message,
                                   wait_time=8,
                                   tab_close=True,close_time=1)
-        print(f'mensaje enviado a {phone}')
     except Exception as e:
         print(e)
     
